@@ -1,0 +1,3 @@
+If using gitbash set the environment to development by running this in terminal from root folder of project
+
+export ASPNETCORE_ENVIRONMENT=development

@@ -1,0 +1,10 @@
+C:\Users\dengle.admin\OmniProjectsAdmin\shippingrequest\bin\Debug\netcoreapp2.0\shippingrequest.deps.json
+C:\Users\dengle.admin\OmniProjectsAdmin\shippingrequest\bin\Debug\netcoreapp2.0\shippingrequest.runtimeconfig.json
+C:\Users\dengle.admin\OmniProjectsAdmin\shippingrequest\bin\Debug\netcoreapp2.0\shippingrequest.runtimeconfig.dev.json
+C:\Users\dengle.admin\OmniProjectsAdmin\shippingrequest\bin\Debug\netcoreapp2.0\shippingrequest.dll
+C:\Users\dengle.admin\OmniProjectsAdmin\shippingrequest\bin\Debug\netcoreapp2.0\shippingrequest.pdb
+C:\Users\dengle.admin\OmniProjectsAdmin\shippingrequest\obj\Debug\netcoreapp2.0\shippingrequest.csproj.CoreCompileInputs.cache
+C:\Users\dengle.admin\OmniProjectsAdmin\shippingrequest\obj\Debug\netcoreapp2.0\shippingrequest.AssemblyInfoInputs.cache
+C:\Users\dengle.admin\OmniProjectsAdmin\shippingrequest\obj\Debug\netcoreapp2.0\shippingrequest.AssemblyInfo.cs
+C:\Users\dengle.admin\OmniProjectsAdmin\shippingrequest\obj\Debug\netcoreapp2.0\shippingrequest.dll
+C:\Users\dengle.admin\OmniProjectsAdmin\shippingrequest\obj\Debug\netcoreapp2.0\shippingrequest.pdb

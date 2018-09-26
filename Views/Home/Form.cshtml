@@ -1,0 +1,129 @@
+@model ViewModel;
+
+<h3>@ViewData["Title"]</h3>
+<h4>@ViewData["Message"]</h4>
+
+<form class="form" method="post">
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="bizPurpCheck">
+      <label class="form-check-label" for="bizPurpCheck">Business</label>
+      <br>
+      <input class="form-check-input" type="checkbox" value="" id="persnlPurpCheck">
+      <label class="form-check-label" for="persnlPurpCheck">Personal</label>
+      </div>
+  </div>
+  <hr>
+  <div class="form-group">
+    <label for="Initiating_Dept">Initiating Department</label>
+    <select class="form-control" id="Initiating_Dept" style="width: 50%;">
+      @foreach(var dept in @Model.deptList)
+      {
+        <option>@dept</option>
+      }
+    </select>
+  </div>
+  <hr>
+  <div class="form-group" style="width: 75%;">
+    <label for="from_Name">From:</label>
+    <input type="text" class="form-control" id="from_Name" aria-describedby="from_Help" placeholder="Enter sender name">
+    <small id="from_Help" class="form-text text-muted">This name will appear on shipping label as sender</small>
+    <br>
+    <label for="from_Phone">Phone:</label>
+    <input type="tel" class="form-control" id="from_Phone" aria-describedby="phone1_Help" placeholder="012-345-6789">
+    <small id="phone1_Help" class="form-text text-muted">This should be the complete phone number</small>
+    <br>
+    <label for="from_Email">From email:</label>
+    <input type="email" class="form-control" id="from_Email" aria-describedby="email_Help" placeholder="Enter email">
+    <small id="email_Help" class="form-text text-muted">This should be a valid email</small>
+  </div>
+  <hr>
+  <div class="form-group" style="width: 75%;">
+    <label for="to_Name">To:</label>
+    <input type="text" class="form-control" id="to_Name" aria-describedby="to_Help" placeholder="Enter recipient name">
+    <small type="text" class="form-text text-muted">This name will appear on shipping label as recipient</small>
+    <br>
+    <label for="to_Country">Country</label>
+    <select class="form-control" id="to_Country" style="width: 70%;">
+      @foreach(var country in @Model.countryList)
+      {
+        <option>@country</option>
+      }
+    </select>
+    <label for="to_Comp">Company:</label>
+    <input type="text" class="form-control" id="to_Comp" aria-describedby="to_Biz" value="NA">
+    <small id="to_Biz" class="form-text text-muted">Company name required for business use</small>
+    <br>
+    <label for="to_AddOne">Street address:</label>
+    <input type="text" class="form-control" id="to_AddOne" aria-describedby="to_strAdd" placeholder="Enter street address">
+    <small id="to_strAdd" class="form-text text-muted">This is first part of the address</small>
+    <br>
+    <label for="to_AddTwo">Address extended:</label>
+    <input type="text" class="form-control" id="to_AddTwo" aria-describedby="to_UnitAdd" value="NA">
+    <small id="to_UnitAdd" class="form-text text-muted">Usually ste, unit, dept, or person</small>
+    <br>
+    <label for="to_City">City:</label>
+    <input type="text" class="form-control" id="to_City" aria-describedby="to_Ciudad" placeholder="Enter city or town">
+    <small id="to_City" class="form-text text-muted">This is for city of town</small>
+    <br>
+    <label for="to_">State:</label>
+    <input type="text" class="form-control" id="to_State" aria-describedby="to_Province" placeholder="Enter state name">
+    <small id="to_Province" class="form-text text-muted">This is for state, province, etc.</small>
+    <br>
+    <label for="postCode">Post Code:</label>
+    <input type="text" class="form-control" id="postCode" aria-describedby="postalCode" placeholder="Enter valid post code">
+    <small id="postalCode" class="form-text text-muted">This can be alphanumeric and include "-"</small>
+    <br>
+    <label for="to_Phone">Phone:</label>
+    <input type="tel" class="form-control" id="to_Phone" aria-describedby="phone2_Help" placeholder="012-345-6789">
+    <small id="phone2_Help" class="form-text text-muted">This should be the complete phone number</small>
+  </div>
+  <hr>
+  <div class="form-group" style="width: 75%;">
+    <label for="BoxQty">Container Quanity (How many labels will this shipment require?):</label>
+    <input type="hidden" id="BoxQty" value="1">
+    <br>
+    <button id="BoxClicker" type="button" class="btn btn-primary btn-small">
+      Click to add Container fields <span id="ClickCount" class="badge badge-light">1</span>
+    </button>
+    <br><br>
+    <button id="BoxRemover" type="button" class="btn btn-danger btn-small">Oops, Click to remove last input!</button>
+
+    <div id="Parcels"><!--Inputs tags for parcels will go in here dynamically--></div>
+  </div>
+</form>
+@section scripts
+{
+  <script type="text/javascript">
+    $(document).ready(function()//this is code that runs once the page is ready and loaded
+    {
+      console.log("script tag loaded! YeeHaw!");
+      let BoxCount = $('#ClickCount').html();
+      console.log("The initial value of BoxCount is: " + BoxCount);
+      $('#Parcels').append('<br><input type="text" class="form-control BoxInput" id="Parcel1" placeholder="Enter container content">');
+    });
+    $('#BoxClicker').click(function()//this is the code that runs when user adds container inputs via BoxClicker
+      {
+        let BoxCount = $('#ClickCount').html();
+        console.log("Adding Click Event worked!! and initial BoxCount is: " + BoxCount);
+        if (BoxCount < 5)
+        {
+          console.log("Boxcount is less than 6");
+          BoxCount ++;
+          console.log("BoxCount now equals: " + BoxCount);
+          $('#Parcels').append('<br><input type="text" class="form-control BoxInput" id="" placeholder="Enter container content">');
+          $('.BoxInput').last(function()
+          {
+            var newId = "Parcel"+BoxCount;
+            $(this).attr("id", newId);
+          });
+          document.getElementById("ClickCount").innerHTML = BoxCount;
+        }
+        else
+        {
+          console.log("Box Count limit of 10 has been reached");
+          document.getElementById("BoxClicker").innerHTML = "Limit of 10 is reached";
+        }   
+      });
+  </script>
+}
